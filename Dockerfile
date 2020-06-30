@@ -1,10 +1,12 @@
-FROM ubuntu:16.04
+FROM python:3.7-alpine
+
 
 WORKDIR /app
 
 COPY . .
 
-RUN apt-get update && apt-get install python3 python3-flask python3-gunicorn -y
+
+RUN pip install -U Flask gunicorn
 
 EXPOSE 5000:5000
-ENTRYPOINT python3 wsgi.py
+ENTRYPOINT python wsgi.py
